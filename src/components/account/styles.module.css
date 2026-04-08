@@ -1,4 +1,16 @@
 .accountList {
   display: grid;
   grid-template-columns: 100px 1fr;
+  gap: var(--bulma-size-small) 0;
+
+  dt {
+    font-weight: var(--bulma-weight-bold);
+    align-self: center;
+  }
+
+  dd {
+    display: flex;
+    gap: var(--bulma-size-small);
+    align-items: center;
+  }
 }

@@ -14,7 +14,9 @@ const Layout: FC<Props> = ({ children }) => {
         {children}
       </main>
       <footer className={clsx("container", styles.footerContainer)}>
-        <Account />
+        <div className="container">
+          <Account />
+        </div>
       </footer>
     </>
   );

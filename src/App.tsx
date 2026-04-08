@@ -1,10 +1,10 @@
 import useSocket from "~/hooks/socket";
 import { useEffect } from "react";
-import useAccount from "~/hooks/account";
+import useAccount, { prettifyRole } from "~/hooks/account";
 
 export default function App() {
   const { emit } = useSocket();
-  const { username } = useAccount();
+  const { role, username } = useAccount();
 
   useEffect(() => {
     emit("event");
@@ -12,7 +12,9 @@ export default function App() {
 
   return (
     <>
-      <h1>Hei {username}!</h1>
+      <h1>
+        Hei {username}, du er {prettifyRole(role)} ^_^
+      </h1>
     </>
   );
 }

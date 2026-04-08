@@ -112,11 +112,18 @@ const randomNames = [
 const randomName = randomNames[Math.floor(Math.random() * randomNames.length)];
 
 export default function AccountProvider({ children }: Props) {
-  const [username] = useLocalStorage("username", randomName);
-  const [role] = useLocalStorage("role", "user");
+  const [username, setUsername] = useLocalStorage("username", randomName);
+  const [role, setRole] = useLocalStorage("role", "user");
 
   return (
-    <AccountContext.Provider value={{ username, role: role as Role }}>
+    <AccountContext.Provider
+      value={{
+        username,
+        role: role as Role,
+        changeName: setUsername,
+        changeRole: setRole,
+      }}
+    >
       {children}
     </AccountContext.Provider>
   );
