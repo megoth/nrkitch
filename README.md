@@ -1,2 +1,3 @@
-# nrkitch
-Prosjekt for Twitch-klient i NRK-drakt (Innovasjonsdagene April 2026)
+# NRKitch
+
+En enkel applikasjon for chat- og andre realtime-funksjonalitet knyttet til NRK live-sendinger.
