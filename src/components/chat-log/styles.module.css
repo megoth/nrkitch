@@ -1,0 +1,6 @@
+.chatLog {
+    max-height: 68vh;
+    overflow-y: scroll;
+    position: sticky;
+    top: 100%;
+}

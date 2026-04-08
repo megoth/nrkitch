@@ -21,27 +21,21 @@ const channels = data.channels.reduce<Record<string, Channel>>(
 );
 
 const updateChatLog = (data: SocketMessage) => {
-  console.log("UPDATE CHAT LOG", JSON.stringify(data, null, 2));
+  // console.log("UPDATE CHAT LOG", JSON.stringify(data, null, 2));
   const channel = channels[data.channelId];
-  if (!channel) {
-    console.error(`Channel not found: ${data.channelId}`);
-    return;
-  }
   const messages = channel.messages || [];
   channels[data.channelId] = {
     ...channel,
     messages: [
       ...messages,
       {
+        ...data,
         id: crypto.randomUUID(),
-        channelId: data.channelId,
-        author: data.author,
-        message: data.message,
         timestamp: new Date().toISOString(),
       },
     ],
   };
-  console.log(`CHAT LOG UPDATED, NEW MESSAGE COUNT ${messages.length + 1}`);
+  // console.log(`CHAT LOG UPDATED, NEW MESSAGE COUNT ${messages.length + 1}`);
 };
 
 const packageData = (): Data => ({
@@ -71,6 +65,12 @@ io.on("connection", (client) => {
 
   client.on("message", (data) => {
     updateChatLog(data);
+    updateAll();
+  });
+
+  client.on("reset", (data: { channelId: string }) => {
+    console.log("RESET", data);
+    channels[data.channelId].messages = [];
     updateAll();
   });
 

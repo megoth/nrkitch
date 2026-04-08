@@ -29,7 +29,7 @@ export default function ChatForm({ channelId, className, ...props }: Props) {
       emit("message", {
         channelId,
         author: username,
-        message: data.message,
+        body: data.message,
       } satisfies SocketMessage);
     },
     [channelId, username, emit],
@@ -52,7 +52,7 @@ export default function ChatForm({ channelId, className, ...props }: Props) {
           />
         </div>
         <div className="control">
-          <button className="button is-info">Search</button>
+          <button className="button is-info">Send</button>
         </div>
       </label>
     </form>

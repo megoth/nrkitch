@@ -7,7 +7,7 @@ export interface Message {
   id: string;
   channelId: string;
   author: string;
-  message: string;
+  body: string;
   timestamp: string;
 }
 
@@ -22,4 +22,4 @@ export interface Data {
   channels: Array<Channel>;
   series: Array<Series>;
 }
-export type SocketMessage = Pick<Message, "channelId" | "author" | "message">;
+export type SocketMessage = Pick<Message, "channelId" | "author" | "body">;
