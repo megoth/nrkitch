@@ -11,6 +11,8 @@
 }
 
 .mainContainer {
+    display: flex;
+    flex-direction: column;
     max-width: 700px;
     padding: var(--bulma-size-4);
 }

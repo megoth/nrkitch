@@ -8,7 +8,7 @@ const RoleToggler: FC = () => {
   return (
     <div className="field has-addons">
       {["moderator", "user"].map((role) => (
-        <p className="control">
+        <p className="control" key={role}>
           <button
             className={clsx("button is-small", {
               "is-primary": role === userRole,

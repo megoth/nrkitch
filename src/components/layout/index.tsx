@@ -1,17 +1,13 @@
-import type { FC, ReactNode } from "react";
 import styles from "./styles.module.css";
 import { clsx } from "clsx";
 import Account from "~/components/account";
+import { Outlet } from "react-router";
 
-interface Props {
-  children: ReactNode;
-}
-
-const Layout: FC<Props> = ({ children }) => {
+export default function Layout() {
   return (
     <>
       <main className={clsx("container", styles.mainContainer)}>
-        {children}
+        <Outlet />
       </main>
       <footer className={clsx("container", styles.footerContainer)}>
         <div className="container">
@@ -20,6 +16,4 @@ const Layout: FC<Props> = ({ children }) => {
       </footer>
     </>
   );
-};
-
-export default Layout;
+}

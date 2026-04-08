@@ -11,3 +11,8 @@
     flex: 0;
   }
 }
+
+ul.list {
+  list-style: initial;
+  margin: var(--bulma-size-small) var(--bulma-size-4);
+}

@@ -1,0 +1,15 @@
+{
+  "series": [
+    {
+      "id": "2f48601b-9c7d-4368-87ec-bde733d4f1c4",
+      "name": "Bakemesterskapet"
+    }
+  ],
+  "channels": [
+    {
+      "id": "7510bf40-0de2-43ef-a5d5-8748c7623748",
+      "seriesId": "2f48601b-9c7d-4368-87ec-bde733d4f1c4",
+      "name": "Offisiell chat for Bakemesterskapet"
+    }
+  ]
+}
