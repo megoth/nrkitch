@@ -5,7 +5,7 @@
     gap: var(--bulma-size-small);
 }
 
-.channelLayout {
+.chatContainer {
     background: rgb(18, 26, 40);
     color: rgb(238, 245, 255);
     border-radius: var(--bulma-radius-large);
@@ -20,34 +20,22 @@
         }
     }
 
-    & :global(.title) {
-        color: rgb(238, 245, 255);
-    }
-
     @media screen and (min-width: 1216px) {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--bulma-size-4);
     }
-
 }
 
-.chatContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--bulma-size-4);
-    padding: var(--bulma-size-small) var(--bulma-size-4);
-}
-
-.chatLog {
-    flex: 1;
-}
-
-.chatForm {
-    flex: 0;
+.content {
+    padding: 0 var(--bulma-size-4);
 }
 
 .headerInner {
     padding: 0 var(--bulma-size-4);
+}
+
+.moderatorButtons {
+    display: flex;
+    gap: var(--bulma-size-small);
 }

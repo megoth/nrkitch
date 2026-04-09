@@ -2,14 +2,14 @@ import { type ReactNode, useCallback, useEffect, useState } from "react";
 import DataContext from "./context";
 import startData from "~/data.json";
 import useSocket from "~/hooks/socket";
-import type { Channel, Data, User } from "~/types.ts";
+import type { Channel, channelMode, Data, User } from "~/types.ts";
 
 interface Props {
   children: ReactNode;
 }
 
 export default function DataProvider({ children }: Props) {
-  const [data, setData] = useState<Data>(startData);
+  const [data, setData] = useState<Data>(startData as Data);
   const { socket, on } = useSocket();
 
   useEffect(() => {
@@ -19,7 +19,15 @@ export default function DataProvider({ children }: Props) {
     });
   }, [socket, on, setData]);
 
-  const getChannels = useCallback(() => data.channels, [data]);
+  const getChannels = useCallback(
+    (options: { mode?: channelMode } = {}) => {
+      if (options.mode) {
+        return data.channels.filter((channel) => channel.mode === options.mode);
+      }
+      return data.channels;
+    },
+    [data],
+  );
 
   const getChannel = useCallback(
     (id: string | undefined): Channel | null =>

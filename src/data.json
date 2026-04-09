@@ -16,7 +16,7 @@
       "imgUrl": "https://gfx.nrk.no/nufz9eU0umJm82DENfq0twBIixcH6PnX6amO7HsH-Niw"
     },
     {
-      "id": "3642f28d-78ac-41c0-baaa-ebe31b7e7dfc",
+      "id": "053c6853-7470-462e-bf1f-0c39c681f306",
       "name": "Kode rød",
       "imgUrl": "https://gfx.nrk.no/rNUE4qn429I6pg9pCZ8SaQUd19sr_zVsB_y-UiH6XTmg"
     }
@@ -24,11 +24,18 @@
   "channels": [
     {
       "id": "7510bf40-0de2-43ef-a5d5-8748c7623748",
-      "programId": "2f48601b-9c7d-4368-87ec-bde733d4f1c4"
+      "programId": "2f48601b-9c7d-4368-87ec-bde733d4f1c4",
+      "mode": "upcoming"
     },
     {
       "id": "6a2201f3-0eab-41a3-b06b-5462af8c05d9",
-      "programId": "3642f28d-78ac-41c0-baaa-ebe31b7e7dfc"
+      "programId": "3642f28d-78ac-41c0-baaa-ebe31b7e7dfc",
+      "mode": "in-progress"
+    },
+    {
+      "id": "d261ba98-613a-4815-adb6-2957eb50f5ef",
+      "programId": "053c6853-7470-462e-bf1f-0c39c681f306",
+      "mode": "closed"
     }
   ],
   "users": {}

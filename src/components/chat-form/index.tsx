@@ -4,17 +4,17 @@ import styles from "./styles.module.css";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import useSocket from "~/hooks/socket";
 import useAccount from "~/hooks/account";
-import type { ChatSocketMessage } from "~/types.ts";
+import type { Channel, ChatSocketMessage } from "~/types.ts";
 
 interface Props extends HTMLAttributes<HTMLLabelElement> {
-  channelId: string;
+  channel: Channel;
 }
 
 interface FormValues {
   message: string;
 }
 
-export default function ChatForm({ channelId, className, ...props }: Props) {
+export default function ChatForm({ channel, className, ...props }: Props) {
   const { username } = useAccount();
   const { emit } = useSocket();
 
@@ -32,13 +32,13 @@ export default function ChatForm({ channelId, className, ...props }: Props) {
   const onSubmit: SubmitHandler<FormValues> = useCallback(
     (data) => {
       emit("message", {
-        channelId,
+        channelId: channel.id,
         author: username,
         body: data.message,
       } satisfies ChatSocketMessage);
       setValue("message", "");
     },
-    [channelId, username, emit, setValue],
+    [channel, username, emit, setValue],
   );
 
   return (

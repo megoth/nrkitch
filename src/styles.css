@@ -6,6 +6,10 @@
     --bulma-primary-h: 214;
     --bulma-primary-s: 71%;
     --bulma-primary-l: 73%;
+}
+
+.title, .subtitle {
+    --bulma-subtitle-color: rgb(238, 245, 255);
     --bulma-title-color: rgb(238, 245, 255);
 }
 

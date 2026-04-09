@@ -1,8 +1,14 @@
 import { createContext } from "react";
-import type { Channel, ChatMessage, Program, User } from "~/types.ts";
+import type {
+  Channel,
+  channelMode,
+  ChatMessage,
+  Program,
+  User,
+} from "~/types.ts";
 
 export interface DataModel {
-  getChannels: () => Array<Channel>;
+  getChannels: (options?: { mode?: channelMode }) => Array<Channel>;
   getChannel: (id: string | undefined) => Channel | null;
   getMessages: (channelId: string) => Array<ChatMessage>;
   getProgram: (programId: string) => Program | null;

@@ -1,6 +1,7 @@
 import type { FC } from "react";
-import useAccount, { prettifyRole } from "~/hooks/account";
+import useAccount from "~/hooks/account";
 import { clsx } from "clsx";
+import { prettifyRole } from "~/utils.ts";
 
 const RoleToggler: FC = () => {
   const { role: userRole, changeRole } = useAccount();

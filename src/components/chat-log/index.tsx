@@ -1,17 +1,15 @@
 import { type HTMLAttributes, useEffect, useMemo } from "react";
 import useData from "~/hooks/data";
 import styles from "./styles.module.css";
+import type { Channel } from "~/types.ts";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  channelId: string;
+  channel: Channel;
 }
 
-export default function ChatLog({ channelId, ...props }: Props) {
+export default function ChatLog({ channel, ...props }: Props) {
   const { getMessages, getUser } = useData();
-  const messages = useMemo(
-    () => getMessages(channelId),
-    [channelId, getMessages],
-  );
+  const messages = useMemo(() => getMessages(channel.id), [channel, getMessages]);
 
   useEffect(() => {
     document

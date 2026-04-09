@@ -69,6 +69,11 @@ io.on("connection", (client) => {
 
   update(client as unknown as Socket);
 
+  client.on("change-mode", (data: { channelId: string; mode: string }) => {
+    channels[data.channelId].mode = data.mode as Channel["mode"];
+    updateAll();
+  })
+
   client.on("message", (data: ChatSocketMessage) => {
     updateChatLog(data);
     updateAll();
