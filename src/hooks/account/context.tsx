@@ -7,6 +7,7 @@ export type Role = ROLE_MODERATOR | ROLE_USER;
 export interface AccountModel {
   username: string;
   role: Role;
+  color: string;
   changeName: (name: string) => void;
   changeRole: (role: string) => void;
 }
@@ -14,6 +15,7 @@ export interface AccountModel {
 const AccountContext = createContext<AccountModel>({
   username: "USERNAME",
   role: "user",
+  color: "red",
   changeName: () => undefined,
   changeRole: () => undefined,
 });

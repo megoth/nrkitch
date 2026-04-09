@@ -1,18 +1,35 @@
+:root {
+    --bulma-body-color: rgb(6, 22, 41);
+    --bulma-link-text: rgb(238, 245, 255);
+    --bulma-primary-dark: #042d4d;
+    --bulma-primary-dark-invert: rgb(178, 207, 245);
+    --bulma-primary-h: 214;
+    --bulma-primary-s: 71%;
+    --bulma-primary-l: 73%;
+    --bulma-title-color: rgb(238, 245, 255);
+}
+
+body {
+    background: rgb(35, 44, 58);
+    color: rgb(238, 245, 255);
+}
+
+
 #root {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 
-  main {
-    flex: 1;
-  }
+    main {
+        flex: 1;
+    }
 
-  footer {
-    flex: 0;
-  }
+    footer {
+        flex: 0;
+    }
 }
 
 ul.list {
-  list-style: initial;
-  margin: var(--bulma-size-small) var(--bulma-size-4);
+    list-style: initial;
+    margin: var(--bulma-size-small) var(--bulma-size-4);
 }

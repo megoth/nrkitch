@@ -1,21 +1,20 @@
-import { type ReactNode, useCallback, useEffect } from "react";
+import { type ReactNode, useCallback, useEffect, useState } from "react";
 import DataContext from "./context";
 import startData from "~/data.json";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import useSocket from "~/hooks/socket";
-import type { Channel, Data } from "~/types.ts";
+import type { Channel, Data, User } from "~/types.ts";
 
 interface Props {
   children: ReactNode;
 }
 
 export default function DataProvider({ children }: Props) {
-  const [data, setData] = useLocalStorage("data", startData);
+  const [data, setData] = useState<Data>(startData);
   const { socket, on } = useSocket();
 
   useEffect(() => {
     on("data", (data) => {
-      console.log("DATA UPDATE", socket.id, data);
+      console.log("DATA UPDATED", data);
       setData(data as Data);
     });
   }, [socket, on, setData]);
@@ -35,8 +34,24 @@ export default function DataProvider({ children }: Props) {
     [getChannel],
   );
 
+  const getProgram = useCallback(
+    (programId: string) => {
+      return data.programs.find((program) => program.id === programId) || null;
+    },
+    [data],
+  );
+
+  const getUser = useCallback(
+    (userId: string) => {
+      return (data.users?.[userId] as User) || null;
+    },
+    [data],
+  );
+
   return (
-    <DataContext.Provider value={{ getChannels, getChannel, getMessages }}>
+    <DataContext.Provider
+      value={{ getChannels, getChannel, getMessages, getProgram, getUser }}
+    >
       {children}
     </DataContext.Provider>
   );

@@ -1,7 +1,12 @@
 import { createServer } from "node:http";
 import { Server } from "socket.io";
 import data from "./data.json";
-import type { Channel, Data, SocketMessage } from "~/types.ts";
+import type {
+  Channel,
+  Data,
+  ChatSocketMessage,
+  UserSocketMessage,
+} from "~/types.ts";
 import type { Socket } from "socket.io-client";
 
 const server = createServer();
@@ -20,7 +25,7 @@ const channels = data.channels.reduce<Record<string, Channel>>(
   {},
 );
 
-const updateChatLog = (data: SocketMessage) => {
+const updateChatLog = (data: ChatSocketMessage) => {
   // console.log("UPDATE CHAT LOG", JSON.stringify(data, null, 2));
   const channel = channels[data.channelId];
   const messages = channel.messages || [];
@@ -39,8 +44,9 @@ const updateChatLog = (data: SocketMessage) => {
 };
 
 const packageData = (): Data => ({
-  series: data.series,
+  programs: data.programs,
   channels: Object.values(channels),
+  users: data.users,
 });
 
 const sockets: Record<string, Socket> = {};
@@ -63,7 +69,7 @@ io.on("connection", (client) => {
 
   update(client as unknown as Socket);
 
-  client.on("message", (data) => {
+  client.on("message", (data: ChatSocketMessage) => {
     updateChatLog(data);
     updateAll();
   });
@@ -71,6 +77,12 @@ io.on("connection", (client) => {
   client.on("reset", (data: { channelId: string }) => {
     console.log("RESET", data);
     channels[data.channelId].messages = [];
+    updateAll();
+  });
+
+  client.on("user-settings", (message: UserSocketMessage) => {
+    console.log("UPDATE USER SETTINGS", message);
+    (data as Data).users[message.username] = message;
     updateAll();
   });
 

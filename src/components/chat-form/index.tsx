@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import useSocket from "~/hooks/socket";
 import useAccount from "~/hooks/account";
-import type { SocketMessage } from "~/types.ts";
+import type { ChatSocketMessage } from "~/types.ts";
 
 interface Props extends HTMLAttributes<HTMLLabelElement> {
   channelId: string;
@@ -18,9 +18,14 @@ export default function ChatForm({ channelId, className, ...props }: Props) {
   const { username } = useAccount();
   const { emit } = useSocket();
 
-  const { handleSubmit, register } = useForm<FormValues>({
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+    setValue,
+  } = useForm<FormValues>({
     defaultValues: {
-      message: "test",
+      message: "",
     },
   });
 
@@ -30,9 +35,10 @@ export default function ChatForm({ channelId, className, ...props }: Props) {
         channelId,
         author: username,
         body: data.message,
-      } satisfies SocketMessage);
+      } satisfies ChatSocketMessage);
+      setValue("message", "");
     },
-    [channelId, username, emit],
+    [channelId, username, emit, setValue],
   );
 
   return (
@@ -45,14 +51,19 @@ export default function ChatForm({ channelId, className, ...props }: Props) {
         <div className={clsx("control", styles.inputControl)}>
           <input
             id="chat-input"
-            className="input"
+            className={clsx("input", { "is-danger": errors.message })}
             type="text"
-            placeholder="Write something fun"
-            {...register("message")}
+            placeholder={
+              errors.message ? "I can't allow that Dave" : "Write something fun"
+            }
+            {...register("message", {
+              required: true,
+              minLength: 1,
+            })}
           />
         </div>
         <div className="control">
-          <button className="button is-info">Send</button>
+          <button className="button is-primary">Send</button>
         </div>
       </label>
     </form>

@@ -1,25 +1,36 @@
-export interface Series {
+export interface Program {
   id: string;
   name: string;
+  imgUrl: string;
 }
 
-export interface Message {
+export interface ChatMessage {
   id: string;
   channelId: string;
   author: string;
   body: string;
   timestamp: string;
 }
+export type ChatSocketMessage = Pick<
+  ChatMessage,
+  "channelId" | "author" | "body"
+>;
 
 export interface Channel {
   id: string;
-  seriesId: Series["id"];
-  name: string;
-  messages?: Array<Message>;
+  programId: Program["id"];
+  messages?: Array<ChatMessage>;
 }
+
+export interface User {
+  color: string;
+  username: string;
+}
+
+export type UserSocketMessage = Pick<User, "color" | "username">;
 
 export interface Data {
   channels: Array<Channel>;
-  series: Array<Series>;
+  programs: Array<Program>;
+  users: Record<string, User>;
 }
-export type SocketMessage = Pick<Message, "channelId" | "author" | "body">;

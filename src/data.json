@@ -1,15 +1,35 @@
 {
-  "series": [
+  "programs": [
     {
       "id": "2f48601b-9c7d-4368-87ec-bde733d4f1c4",
-      "name": "Bakemesterskapet"
+      "name": "Bakemesterskapet",
+      "imgUrl": "https://gfx.nrk.no/cnxfBWioTVd7V-LHKJ0Beg8Sis3VASNGr01650bMpi6g"
+    },
+    {
+      "id": "a994f87f-2399-48ba-8ffa-8a916a23af17",
+      "name": "Team Pølsa",
+      "imgUrl": "https://gfx.nrk.no/SY9goCRHFon9FComMkpYGgSzclyhjb8ypV6jD2afzbrA"
+    },
+    {
+      "id": "3642f28d-78ac-41c0-baaa-ebe31b7e7dfc",
+      "name": "Monsen og nasjonalparkene",
+      "imgUrl": "https://gfx.nrk.no/nufz9eU0umJm82DENfq0twBIixcH6PnX6amO7HsH-Niw"
+    },
+    {
+      "id": "3642f28d-78ac-41c0-baaa-ebe31b7e7dfc",
+      "name": "Kode rød",
+      "imgUrl": "https://gfx.nrk.no/rNUE4qn429I6pg9pCZ8SaQUd19sr_zVsB_y-UiH6XTmg"
     }
   ],
   "channels": [
     {
       "id": "7510bf40-0de2-43ef-a5d5-8748c7623748",
-      "seriesId": "2f48601b-9c7d-4368-87ec-bde733d4f1c4",
-      "name": "Offisiell chat for Bakemesterskapet"
+      "programId": "2f48601b-9c7d-4368-87ec-bde733d4f1c4"
+    },
+    {
+      "id": "6a2201f3-0eab-41a3-b06b-5462af8c05d9",
+      "programId": "3642f28d-78ac-41c0-baaa-ebe31b7e7dfc"
     }
-  ]
+  ],
+  "users": {}
 }

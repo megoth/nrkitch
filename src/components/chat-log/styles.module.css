@@ -1,6 +1,20 @@
 .chatLog {
-    max-height: 68vh;
+    max-height: 45vh;
     overflow-y: scroll;
     position: sticky;
     top: 100%;
+
+    @media screen and (min-height: 1200px) {
+        max-height: 60vh;
+    }
+}
+
+.chatUser {
+    &:after {
+        content: ": ";
+    }
+}
+
+.chatMessage {
+
 }

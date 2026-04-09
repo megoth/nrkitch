@@ -10,12 +10,12 @@ import DataProvider from "~/hooks/data/provider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AccountProvider>
-      <SocketProvider>
+    <SocketProvider>
+      <AccountProvider>
         <DataProvider>
           <RouterProvider router={routes} />
         </DataProvider>
-      </SocketProvider>
-    </AccountProvider>
+      </AccountProvider>
+    </SocketProvider>
   </StrictMode>,
 );

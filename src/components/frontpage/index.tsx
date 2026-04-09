@@ -4,18 +4,21 @@ import useData from "~/hooks/data";
 
 export default function Frontpage() {
   const { role, username } = useAccount();
-  const { getChannels } = useData();
+  const { getChannels, getProgram } = useData();
   return (
     <>
       <h1>
         Hei {username}, du er {prettifyRole(role)} ^_^
       </h1>
       <ul className="list">
-        {getChannels().map((channel) => (
-          <li key={channel.id}>
-            <NavLink to={`/${channel.id}`}>{channel.name}</NavLink>
-          </li>
-        ))}
+        {getChannels().map((channel) => {
+          const program = getProgram(channel.programId);
+          return (
+            <li key={channel.id}>
+              <NavLink to={`/${channel.id}`}>{program?.name || "Fant ikke navn..."}</NavLink>
+            </li>
+          );
+        })}
       </ul>
     </>
   );

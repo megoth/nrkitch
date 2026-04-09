@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 export default function ChatLog({ channelId, ...props }: Props) {
-  const { getMessages } = useData();
+  const { getMessages, getUser } = useData();
   const messages = useMemo(
     () => getMessages(channelId),
     [channelId, getMessages],
@@ -25,9 +25,14 @@ export default function ChatLog({ channelId, ...props }: Props) {
       {messages && (
         <ul className={styles.chatLog}>
           {messages.map((message) => (
-            <li key={message.id} id={message.id} className="message is-small">
-              <div className="message-header">{message.author}</div>
-              <div className="message-body">{message.body}</div>
+            <li key={message.id} id={message.id}>
+              <span
+                className={styles.chatUser}
+                style={{ color: getUser(message.author)?.color || "red" }}
+              >
+                {message.author}
+              </span>
+              <span>{message.body}</span>
             </li>
           ))}
         </ul>

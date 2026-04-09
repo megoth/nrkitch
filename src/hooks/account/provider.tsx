@@ -1,6 +1,8 @@
-import { type ReactNode } from "react";
+import { type ReactNode, useEffect } from "react";
 import AccountContext, { type Role } from "./context";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import useSocket from "~/hooks/socket";
+import type { UserSocketMessage } from "~/types.ts";
 
 interface Props {
   children: ReactNode;
@@ -111,15 +113,27 @@ const randomNames = [
 
 const randomName = randomNames[Math.floor(Math.random() * randomNames.length)];
 
+const randomColors = ["red", "blue", "green", "yellow", "purple", "orange"];
+
+const randomColor =
+  randomColors[Math.floor(Math.random() * randomColors.length)];
+
 export default function AccountProvider({ children }: Props) {
   const [username, setUsername] = useLocalStorage("username", randomName);
   const [role, setRole] = useLocalStorage("role", "user");
+  const [color] = useLocalStorage("color", randomColor);
+  const { emit } = useSocket();
+
+  useEffect(() => {
+    emit("user-settings", { username, color } satisfies UserSocketMessage);
+  }, [emit, username, color]);
 
   return (
     <AccountContext.Provider
       value={{
         username,
         role: role as Role,
+        color,
         changeName: setUsername,
         changeRole: setRole,
       }}
