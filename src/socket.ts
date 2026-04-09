@@ -6,6 +6,7 @@ import type {
   Data,
   ChatSocketMessage,
   UserSocketMessage,
+  ChannelModeSocketMessage,
 } from "~/types.ts";
 import type { Socket } from "socket.io-client";
 
@@ -19,7 +20,7 @@ const io = new Server(server, {
 
 const channels = data.channels.reduce<Record<string, Channel>>(
   (memo, channel) => {
-    memo[channel.id] = channel;
+    memo[channel.id] = channel as Channel;
     return memo;
   },
   {},
@@ -51,15 +52,11 @@ const packageData = (): Data => ({
 
 const sockets: Record<string, Socket> = {};
 
-const update = (socket: Socket) => {
-  console.log(`SENDING DATA UPDATE TO ${socket.id}`);
-  return socket.emit("data", packageData());
-};
+const updateData = (socket: Socket) => socket.emit("data", packageData());
 
-const updateAll = () => {
-  console.log("SENDING DATA UPDATE TO ALL");
+const updateAll = (updateFn = updateData) => {
   for (const client of Object.values(sockets)) {
-    update(client);
+    updateFn(client);
   }
 };
 
@@ -67,12 +64,13 @@ io.on("connection", (client) => {
   sockets[client.id] = client as unknown as Socket;
   console.log("CONNECTION");
 
-  update(client as unknown as Socket);
+  updateData(client as unknown as Socket);
 
-  client.on("change-mode", (data: { channelId: string; mode: string }) => {
+  client.on("change-mode", (data: ChannelModeSocketMessage) => {
     channels[data.channelId].mode = data.mode as Channel["mode"];
+    updateAll((socket: Socket) => socket.emit("changed-mode", data));
     updateAll();
-  })
+  });
 
   client.on("message", (data: ChatSocketMessage) => {
     updateChatLog(data);

@@ -14,7 +14,7 @@ export default function DataProvider({ children }: Props) {
 
   useEffect(() => {
     on("data", (data) => {
-      console.log("DATA UPDATED", data);
+      // console.log("DATA UPDATED", data);
       setData(data as Data);
     });
   }, [socket, on, setData]);

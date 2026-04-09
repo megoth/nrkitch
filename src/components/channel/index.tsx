@@ -7,6 +7,7 @@ import RoleRestricted from "~/components/role-restricted";
 import Chat from "~/components/chat";
 import ModeToggler from "~/components/mode-toggler";
 import ClearLogButton from "~/components/clear-log-button";
+import SubscribeButton from "~/components/subscribe-button";
 
 export default function Channel() {
   const params = useParams();
@@ -38,7 +39,7 @@ export default function Channel() {
           </div>
         </header>
         <div className={styles.content}>
-          {channel.mode === "upcoming" && <div>Kommer snart</div>}
+          {channel.mode === "upcoming" && <SubscribeButton channelId={channel.id}>Gi meg beskjed når chatten starter</SubscribeButton>}
           {channel.mode === "in-progress" && <Chat channel={channel} />}
           {channel.mode === "closed" && <div>Avsluttet</div>}
         </div>

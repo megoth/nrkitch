@@ -1,12 +1,12 @@
 .footerContainer {
     background: var(--bulma-primary-dark);
     color: var(--bulma-primary-dark-invert);
-    padding: var(--bulma-size-6) var(--bulma-size-4);
     bottom: 0;
     min-width: 100% !important;
 
-    .container {
+    :global(.container) {
         max-width: 700px;
+        padding: var(--bulma-size-small) var(--bulma-size-4);
     }
 }
 

@@ -1,8 +1,9 @@
-import { type ReactNode, useEffect } from "react";
+import { type ReactNode, useCallback, useEffect } from "react";
 import AccountContext, { type Role } from "./context";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import useSocket from "~/hooks/socket";
-import type { UserSocketMessage } from "~/types.ts";
+import type { ChannelModeSocketMessage, UserSocketMessage } from "~/types.ts";
+import useData from "~/hooks/data";
 
 interface Props {
   children: ReactNode;
@@ -122,11 +123,60 @@ export default function AccountProvider({ children }: Props) {
   const [username, setUsername] = useLocalStorage("username", randomName);
   const [role, setRole] = useLocalStorage("role", "user");
   const [color] = useLocalStorage("color", randomColor);
-  const { emit } = useSocket();
+  const [subs, setSubs] = useLocalStorage<string[]>("subscriptions", []);
+  const { emit, on } = useSocket();
+  const { getChannel, getProgram } = useData();
 
   useEffect(() => {
     emit("user-settings", { username, color } satisfies UserSocketMessage);
   }, [emit, username, color]);
+
+  useEffect(() => {
+    if (subs.length === 0) return;
+
+    on("changed-mode", (data) => {
+      const { channelId, mode } = data as ChannelModeSocketMessage;
+      if (mode === "in-progress" && subs.includes(channelId)) {
+        console.log("Sending notification");
+        const notification = new Notification("Chat er i gang", {
+          body: `Chat har startet for ${getProgram(getChannel(channelId)!.programId)!.name}`,
+        });
+
+        notification.onclick = () => {
+          window.focus();
+          notification.close();
+        };
+      }
+    });
+  }, [getChannel, getProgram, on, subs]);
+
+  const subscribe = useCallback(
+    (channelId: string) => {
+      if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+      } else if (Notification.permission === "granted") {
+        setSubs((prev) => [...prev, channelId]);
+      } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(() =>
+          setSubs((prev) => [...prev, channelId]),
+        );
+      } else {
+        setSubs((prev) => [...prev, channelId]);
+      }
+    },
+    [setSubs],
+  );
+
+  const hasSubscription = useCallback(
+    (channelId: string) => subs.includes(channelId),
+    [subs],
+  );
+
+  const unsubscribe = useCallback(
+    (channelId: string) =>
+      setSubs((prev) => prev.filter((id) => id !== channelId)),
+    [setSubs],
+  );
 
   return (
     <AccountContext.Provider
@@ -136,6 +186,9 @@ export default function AccountProvider({ children }: Props) {
         color,
         changeName: setUsername,
         changeRole: setRole,
+        subscribe,
+        unsubscribe,
+        hasSubscription,
       }}
     >
       {children}

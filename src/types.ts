@@ -18,6 +18,11 @@ export type ChatSocketMessage = Pick<
 
 export type channelMode = "upcoming" | "in-progress" | "closed";
 
+export interface ChannelModeSocketMessage {
+  channelId: string;
+  mode: channelMode;
+}
+
 export interface Channel {
   id: string;
   programId: Program["id"];

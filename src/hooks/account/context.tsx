@@ -10,6 +10,9 @@ export interface AccountModel {
   color: string;
   changeName: (name: string) => void;
   changeRole: (role: string) => void;
+  subscribe: (channelId: string) => void;
+  unsubscribe: (channelId: string) => void;
+  hasSubscription: (channelId: string) => boolean;
 }
 
 const AccountContext = createContext<AccountModel>({
@@ -18,6 +21,9 @@ const AccountContext = createContext<AccountModel>({
   color: "red",
   changeName: () => undefined,
   changeRole: () => undefined,
+  subscribe: () => undefined,
+  unsubscribe: () => undefined,
+  hasSubscription: () => false,
 });
 
 export default AccountContext;

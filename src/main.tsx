@@ -11,11 +11,11 @@ import DataProvider from "~/hooks/data/provider.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <SocketProvider>
-      <AccountProvider>
-        <DataProvider>
+      <DataProvider>
+        <AccountProvider>
           <RouterProvider router={routes} />
-        </DataProvider>
-      </AccountProvider>
+        </AccountProvider>
+      </DataProvider>
     </SocketProvider>
   </StrictMode>,
 );
