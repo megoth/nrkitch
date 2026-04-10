@@ -38,5 +38,46 @@
       "mode": "closed"
     }
   ],
-  "users": {}
+  "users": {
+    "Arne": {
+      "username": "Arne",
+      "color": "red"
+    },
+    "Ole": {
+      "username": "Ole",
+      "color": "blue"
+    },
+    "Mark": {
+      "username": "Mark",
+      "color": "purple"
+    },
+    "Bjarne": {
+      "username": "Bjarne",
+      "color": "cyan"
+    },
+    "Ryan": {
+      "username": "Ryan",
+      "color": "green"
+    },
+    "Ali": {
+      "username": "Ali",
+      "color": "#F5276C"
+    },
+    "Hilde": {
+      "username": "Hilde",
+      "color": "#F5B027"
+    },
+    "Jan": {
+      "username": "Jan",
+      "color": "#E1CEEA"
+    },
+    "Kristin": {
+      "username": "Kristin",
+      "color": "#CEEAE1"
+    },
+    "Line": {
+      "username": "Line",
+      "color": "#EAE1CE"
+    }
+  }
 }

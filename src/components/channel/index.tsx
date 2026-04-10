@@ -9,6 +9,7 @@ import ModeToggler from "~/components/mode-toggler";
 import ClearLogButton from "~/components/clear-log-button";
 import SubscribeButton from "~/components/subscribe-button";
 import ChatMedia from "~/components/chat-media";
+import ChatFaker from "~/components/chat-faker";
 
 export default function Channel() {
   const params = useParams();
@@ -53,6 +54,7 @@ export default function Channel() {
         <div className={styles.moderatorButtons}>
           <ModeToggler channel={channel} />
           <ClearLogButton channel={channel} />
+          <ChatFaker channel={channel} />
         </div>
       </RoleRestricted>
     </div>
