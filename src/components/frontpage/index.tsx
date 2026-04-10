@@ -2,7 +2,7 @@ import useAccount from "~/hooks/account";
 import { prettifyRole } from "~/utils.ts";
 import ActiveChannels from "~/components/active-channels";
 import ChannelList from "~/components/channel-list";
-import UpcomingChannels from "~/components/upcoming-channels";
+import { UpcomingChannels } from "~/components/upcoming-channels";
 import styles from "./styles.module.css";
 import { clsx } from "clsx";
 import ProgramList from "~/components/program-list";

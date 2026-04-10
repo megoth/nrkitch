@@ -10,7 +10,7 @@
     gap: var(--bulma-size-small);
 
     @media screen and (min-width: 769px) {
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
 

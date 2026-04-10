@@ -1,5 +1,6 @@
 export interface Program {
   id: string;
+  channelId?: Channel["id"];
   name: string;
   imgUrl: string;
 }

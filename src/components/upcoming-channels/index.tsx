@@ -3,7 +3,7 @@ import { NavLink } from "react-router";
 import ChatMedia from "~/components/chat-media";
 import styles from "./styles.module.css";
 
-export default function UpcomingChannels() {
+export function UpcomingChannels() {
   const { getChannels, getProgram } = useData();
   return (
     <section>
@@ -14,7 +14,9 @@ export default function UpcomingChannels() {
           return (
             <li key={channel.id}>
               <NavLink to={`/${channel.id}`}>
-                <ChatMedia channel={channel} program={program} />
+                <ChatMedia channel={channel} program={program}>
+                  <span className="tag is-success">Snart i gang!</span>
+                </ChatMedia>
                 <h3 className="subtitle">Chat snart i gang: {program?.name || "Fant ikke navn..."}</h3>
               </NavLink>{" "}
             </li>
