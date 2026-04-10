@@ -8,6 +8,7 @@ import Chat from "~/components/chat";
 import ModeToggler from "~/components/mode-toggler";
 import ClearLogButton from "~/components/clear-log-button";
 import SubscribeButton from "~/components/subscribe-button";
+import ChatMedia from "~/components/chat-media";
 
 export default function Channel() {
   const params = useParams();
@@ -33,13 +34,17 @@ export default function Channel() {
       </nav>
       <div className={styles.chatContainer}>
         <header>
-          <img src={program.imgUrl} alt={`Skjermbilde for ${program.name}`} />
+          <ChatMedia channel={channel} program={program} />
           <div className={styles.headerInner}>
             <h1 className="title">{program.name}</h1>
           </div>
         </header>
         <div className={styles.content}>
-          {channel.mode === "upcoming" && <SubscribeButton channelId={channel.id}>Gi meg beskjed når chatten starter</SubscribeButton>}
+          {channel.mode === "upcoming" && (
+            <SubscribeButton channelId={channel.id}>
+              Gi meg beskjed når chatten starter
+            </SubscribeButton>
+          )}
           {channel.mode === "in-progress" && <Chat channel={channel} />}
           {channel.mode === "closed" && <div>Avsluttet</div>}
         </div>

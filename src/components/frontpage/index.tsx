@@ -4,6 +4,7 @@ import useData from "~/hooks/data";
 import { prettifyChannelMode, prettifyRole } from "~/utils.ts";
 import Chat from "~/components/chat";
 import styles from "./styles.module.css";
+import ChatMedia from "~/components/chat-media";
 
 export default function Frontpage() {
   const { role, username } = useAccount();
@@ -19,7 +20,7 @@ export default function Frontpage() {
         if (!program) return null;
         return (
           <article key={channel.id} className={styles.activeChat}>
-            <img src={program.imgUrl} alt={`Skjermbilde for ${program.name}`} />
+            <ChatMedia channel={channel} program={program} />
             <h2 className="subtitle">
               Direkte nå: {getProgram(channel.programId)?.name}
             </h2>
