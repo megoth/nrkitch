@@ -1,4 +1,5 @@
 import type { Channel, Program } from "~/types.ts";
+import ProgramMedia from "~/components/program-media";
 
 interface Props {
   channel: Channel;
@@ -13,9 +14,7 @@ export default function ChatMedia({ channel, program }: Props) {
           <source src="/Flippklipp.mp4" type="video/mp4" />
         </video>
       )}
-      {channel.mode !== "in-progress" && (
-        <img src={program.imgUrl} alt={`Skjermbilde for ${program.name}`} />
-      )}
+      {channel.mode !== "in-progress" && <ProgramMedia program={program} />}
     </>
   );
 }

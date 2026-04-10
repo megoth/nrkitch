@@ -42,6 +42,10 @@ export default function DataProvider({ children }: Props) {
     [getChannel],
   );
 
+  const getPrograms = useCallback(() => {
+    return data.programs;
+  }, [data]);
+
   const getProgram = useCallback(
     (programId: string) => {
       return data.programs.find((program) => program.id === programId) || null;
@@ -58,7 +62,7 @@ export default function DataProvider({ children }: Props) {
 
   return (
     <DataContext.Provider
-      value={{ getChannels, getChannel, getMessages, getProgram, getUser }}
+      value={{ getChannels, getChannel, getMessages, getProgram, getPrograms, getUser }}
     >
       {children}
     </DataContext.Provider>

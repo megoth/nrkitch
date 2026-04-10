@@ -3,6 +3,7 @@
     {
       "id": "2f48601b-9c7d-4368-87ec-bde733d4f1c4",
       "name": "Bakemesterskapet",
+      "channelId": "7510bf40-0de2-43ef-a5d5-8748c7623748",
       "imgUrl": "https://gfx.nrk.no/cnxfBWioTVd7V-LHKJ0Beg8Sis3VASNGr01650bMpi6g"
     },
     {
@@ -13,12 +14,19 @@
     {
       "id": "3642f28d-78ac-41c0-baaa-ebe31b7e7dfc",
       "name": "Monsen og nasjonalparkene",
+      "channelId": "6a2201f3-0eab-41a3-b06b-5462af8c05d9",
       "imgUrl": "https://gfx.nrk.no/nufz9eU0umJm82DENfq0twBIixcH6PnX6amO7HsH-Niw"
     },
     {
       "id": "053c6853-7470-462e-bf1f-0c39c681f306",
       "name": "Kode rød",
+      "channelId": "d261ba98-613a-4815-adb6-2957eb50f5ef",
       "imgUrl": "https://gfx.nrk.no/rNUE4qn429I6pg9pCZ8SaQUd19sr_zVsB_y-UiH6XTmg"
+    },
+    {
+      "id": "54ce5b92-8512-43c5-9b24-f8ba3b29fd9a-1",
+      "name": "Eurovision Song Contest 2026",
+      "imgUrl": "https://gfx.nrk.no/wt2NpxoshOBFxr54N-BotAPh0Uun_n98yxvVU_sLZMOg"
     }
   ],
   "channels": [

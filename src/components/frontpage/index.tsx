@@ -5,6 +5,7 @@ import ChannelList from "~/components/channel-list";
 import UpcomingChannels from "~/components/upcoming-channels";
 import styles from "./styles.module.css";
 import { clsx } from "clsx";
+import ProgramList from "~/components/program-list";
 
 export default function Frontpage() {
   const { role, username } = useAccount();
@@ -16,6 +17,7 @@ export default function Frontpage() {
       <ActiveChannels />
       <UpcomingChannels />
       <ChannelList />
+      <ProgramList />
     </div>
   );
 }

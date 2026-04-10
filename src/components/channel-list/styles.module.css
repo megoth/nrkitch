@@ -1,0 +1,9 @@
+.list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--bulma-size-small);
+
+    @media screen and (min-width: 769px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
