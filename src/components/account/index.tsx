@@ -1,16 +1,12 @@
-import { type FC, useCallback } from "react";
+import { type FC } from "react";
 import styles from "./styles.module.css";
 import useAccount from "~/hooks/account";
 import RoleToggler from "~/components/role-toggler";
+import ColorSelect from "~/components/color-select";
+import NameSelect from "~/components/name-select";
 
 const Account: FC = () => {
-  const { username, changeName } = useAccount();
-
-  const onChangeName = useCallback(() => {
-    const newUsername = prompt("Brukernavn", username);
-    if (!newUsername) return;
-    changeName(newUsername);
-  }, [username, changeName]);
+  const { color, username } = useAccount();
 
   return (
     <div>
@@ -18,13 +14,12 @@ const Account: FC = () => {
         <dt>Brukernavn</dt>
         <dd>
           <span>{username}</span>
-          <button
-            className="button is-small"
-            type="button"
-            onClick={onChangeName}
-          >
-            Endre
-          </button>
+          <NameSelect />
+        </dd>
+        <dt>Farge</dt>
+        <dd>
+          <span style={{ color }}>{color}</span>
+          <ColorSelect />
         </dd>
         <dt>Rolle</dt>
         <dd>

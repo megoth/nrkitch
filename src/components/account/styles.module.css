@@ -3,6 +3,15 @@
   grid-template-columns: 100px 1fr;
   gap: var(--bulma-size-small) 0;
 
+  @media screen and (min-width: 769px) {
+    display: flex;
+    gap: var(--bulma-size-small);
+
+    dd {
+      margin-right: var(--bulma-size-small);
+    }
+  }
+
   dt {
     font-weight: var(--bulma-weight-bold);
     align-self: center;

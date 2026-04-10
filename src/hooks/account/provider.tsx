@@ -122,7 +122,7 @@ const randomColor =
 export default function AccountProvider({ children }: Props) {
   const [username, setUsername] = useLocalStorage("username", randomName);
   const [role, setRole] = useLocalStorage("role", "user");
-  const [color] = useLocalStorage("color", randomColor);
+  const [color, setColor] = useLocalStorage("color", randomColor);
   const [subs, setSubs] = useLocalStorage<string[]>("subscriptions", []);
   const { emit, on } = useSocket();
   const { getChannel, getProgram } = useData();
@@ -178,6 +178,14 @@ export default function AccountProvider({ children }: Props) {
     [setSubs],
   );
 
+  const changeColor = useCallback(
+    (color: string) => {
+      setColor(color);
+      emit("user-settings", { username, color } satisfies UserSocketMessage);
+    },
+    [setColor, emit, username],
+  );
+
   return (
     <AccountContext.Provider
       value={{
@@ -185,6 +193,7 @@ export default function AccountProvider({ children }: Props) {
         role: role as Role,
         color,
         changeName: setUsername,
+        changeColor,
         changeRole: setRole,
         subscribe,
         unsubscribe,
