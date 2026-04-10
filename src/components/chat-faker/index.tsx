@@ -20,19 +20,19 @@ const FAKE_NAMES = [
 ];
 
 const FAKE_MESSAGES = [
-  "SKRIV 1 HVIS DERE LIKER PIZZA!!!",
-  "Kan jeg bli mod?? pleeeeease i",
-  "hei",
+  "SKRIV 1 HVIS DERE LIKER PIZZA!!!🍕🍕🍕",
+  "Kan jeg bli mod?? pleeeeease i 😀",
+  "hei😀",
   "hallo",
   "halla",
-  "Lul han døde!!!!",
+  "Lul han døde!!!!😏",
   "HEI PØLSESPILLEREN KAN DU SI NAVNET MITT??????",
   "111111111",
-  "1 PEDER_GAMING HVORFOR SPISER DU IKKE MER",
+  "1 PEDER_GAMING HVORFOR SPISER DU IKKE MER😌",
   "Sies mye rart her",
-  "Lol",
-  "ROFL",
-  "ROFLMAO",
+  "Lol😂",
+  "ROFL😂",
+  "ROFLMAO😆",
 ];
 
 function fakeIt(list: string[]): string {

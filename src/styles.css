@@ -1,6 +1,6 @@
 :root {
     --bulma-body-color: rgb(6, 22, 41);
-    --bulma-link-text: rgb(238, 245, 255);
+    --bulma-link-text: hsla(229, 53%, 53%, 1);
     --bulma-primary-dark: #042d4d;
     --bulma-primary-dark-invert: rgb(178, 207, 245);
     --bulma-primary-h: 214;
@@ -11,6 +11,9 @@
 .title, .subtitle {
     --bulma-subtitle-color: rgb(238, 245, 255);
     --bulma-title-color: rgb(238, 245, 255);
+    a {
+        --bulma-link-text: rgb(238, 245, 255);
+    }
 }
 
 body {

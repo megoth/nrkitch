@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 import ChatMedia from "~/components/chat-media";
 import Chat from "~/components/chat";
 import useData from "~/hooks/data";
+import { NavLink } from "react-router";
 
 export default function ActiveChannels() {
   const { getChannels, getProgram } = useData();
@@ -13,11 +14,18 @@ export default function ActiveChannels() {
         if (!program) return null;
         return (
           <article key={channel.id} className={styles.activeChat}>
-            <ChatMedia channel={channel} program={program} />
-            <h2 className="subtitle">
-              Direkte nå: {getProgram(channel.programId)?.name}
-            </h2>
-            <Chat channel={channel} />
+            <header className={styles.header}>
+              <ChatMedia channel={channel} program={program} />
+              <h2 className="subtitle">
+                <NavLink to={`/${channel.id}`}>
+                  Direkte nå: {getProgram(channel.programId)?.name}
+                </NavLink>
+              </h2>
+              <nav>
+                <NavLink to={`/${channel.id}`}>Gå til chat</NavLink>
+              </nav>
+            </header>
+            <Chat channel={channel} className={styles.content} />
           </article>
         );
       }) || <p>Det er ingen aktive kanaler</p>}

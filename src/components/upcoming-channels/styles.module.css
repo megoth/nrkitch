@@ -1,5 +1,9 @@
 .list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--bulma-size-4);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--bulma-size-small);
+
+    @media screen and (min-width: 769px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }

@@ -5,12 +5,13 @@ import type { Channel } from "~/types.ts";
 import { useMemo } from "react";
 import useData from "~/hooks/data";
 import styles from "./styles.module.css";
+import { clsx } from "clsx";
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   channel: Channel;
 }
 
-export default function Chat({ channel }: Props) {
+export default function Chat({ channel, className, ...props }: Props) {
   const { getProgram } = useData();
 
   const program = useMemo(
@@ -21,7 +22,7 @@ export default function Chat({ channel }: Props) {
   if (!program) return <ErrorMessage>Fant ikke program</ErrorMessage>;
 
   return (
-    <div className={styles.chatContainer}>
+    <div className={clsx(styles.chatContainer, className)} {...props}>
       <ChatLog channel={channel} className={styles.chatLog} />
       <ChatForm channel={channel} className={styles.chatForm} />
     </div>
